@@ -21,8 +21,24 @@ import example.training.model.fandamental.Gender;
 @RequestMapping("employee")
 public class EmployeeController {
 
+//	@Autowired
+//	private EmployeeRepository employeeRepository;
+//	@Autowired
+//	private EmployeeService employeeService;
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@GetMapping
-	public String employees() {
+	public String employees(Model model) {
+
 		return "employee/employee-list";
 	}
 
@@ -39,10 +55,30 @@ public class EmployeeController {
 				new EmployeeDepartment(
 						new DepartmentId(20),
 						new DepartmentName("システム本部")));
-
+		
 		model.addAttribute("employee", employee);
-
+		
 		return "employee/employee";
-
+		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//	model.addAttribute("employeelist", employeeService.listOf());
+	
+//	model.addAttribute("employee", employeeRepository.findById(employeeId));
+//	model.addAttribute("employee", employeeService.findById(employeeId));
+
 }
