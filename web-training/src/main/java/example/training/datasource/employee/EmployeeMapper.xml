@@ -48,5 +48,11 @@
 			employee.department
 		ON
 			employee.department_id = department.id
+		<where>
+			<if test="criteria.notEmpty">
+				department.name LIKE '%'||#{criteria.departmentName}||'%'
+			</if>
+		</where>
 	</select>
+
 </mapper>
