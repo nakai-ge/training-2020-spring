@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import example.training.model.employee.Employee;
 import example.training.model.employee.EmployeeRepository;
+import example.training.model.fandamental.exception.ResourceNotFoundException;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -14,7 +15,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public Employee findById(Integer employeeId) {
-		return employeeRepository.findById(employeeId);
+		Employee employee = employeeRepository.findById(employeeId);
+		if( employee == null )
+			throw new ResourceNotFoundException();
+		return employee;
 	}
 
 }
