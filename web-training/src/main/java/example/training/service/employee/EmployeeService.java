@@ -1,4 +1,4 @@
-package example.training.service;
+package example.training.service.employee;
 
 import example.training.model.employee.Employee;
 import example.training.model.employee.EmployeeList;

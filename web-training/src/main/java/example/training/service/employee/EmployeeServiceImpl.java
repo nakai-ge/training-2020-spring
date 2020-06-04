@@ -1,4 +1,4 @@
-package example.training.service;
+package example.training.service.employee;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

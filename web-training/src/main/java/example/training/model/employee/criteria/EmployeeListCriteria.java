@@ -2,30 +2,31 @@ package example.training.model.employee.criteria;
 
 public class EmployeeListCriteria {
 
-	private String departmentName;
+	private Integer selectedDepartmentId;
 
 	public EmployeeListCriteria() {
-		departmentName = "";
 	}
 
 	public boolean isEmpty() {
-		return departmentName.isEmpty();
+		if(selectedDepartmentId == null)
+			return true;
+		return false;
 	}
 
 	public boolean isNotEmpty() {
-		return !departmentName.isEmpty();
+		return !isEmpty();
 	}
 
-	public String getDepartmentName() {
-		return departmentName;
+	public Integer getSelectedDepartmentId() {
+		return selectedDepartmentId;
 	}
 
-	public void setDepartmentName(String departmentName) {
-		this.departmentName = departmentName;
+	public void setSelectedDepartmentId(Integer selectedDepartmentId) {
+		this.selectedDepartmentId = selectedDepartmentId;
 	}
 
 	@Override
 	public String toString() {
-		return String.format("EmployeeListCriteria [departmentName=%s]", departmentName);
+		return String.format("EmployeeListCriteria [selectedDepartmentId=%s]", selectedDepartmentId);
 	}
 }

@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import example.training.model.department.DepartmentList;
 import example.training.model.employee.Employee;
 import example.training.model.employee.EmployeeList;
 import example.training.model.employee.criteria.EmployeeListCriteria;
 import example.training.model.employee.criteria.EmployeeListCriteriaFactory;
-import example.training.service.EmployeeService;
+import example.training.service.department.DepartmentService;
+import example.training.service.employee.EmployeeService;
 
 @Controller
 @RequestMapping("employee")
@@ -21,7 +23,8 @@ public class EmployeeController {
 
 	@Autowired
 	private EmployeeService employeeSevice;
-
+	@Autowired
+	private DepartmentService departmentService;
 	@Autowired
 	private EmployeeListCriteriaFactory employeeListCriteriaFactory;
 
@@ -29,8 +32,10 @@ public class EmployeeController {
 	public String employees(Model model) {
 		EmployeeListCriteria criteria = employeeListCriteriaFactory.create();
 		EmployeeList employeeList = employeeSevice.listOf(criteria);
+		DepartmentList departmentList = departmentService.listOf();
 		model.addAttribute("criteria", criteria);
 		model.addAttribute("employeelist", employeeList);
+		model.addAttribute("departmentList", departmentList);
 		return "employee/employee-list";
 	}
 
@@ -38,8 +43,10 @@ public class EmployeeController {
 	public String employeesSearch(@ModelAttribute EmployeeListCriteria criteria,
 			Model model) {
 		EmployeeList employeeList = employeeSevice.listOf(criteria);
+		DepartmentList departmentList = departmentService.listOf();
 		model.addAttribute("criteria", criteria);
 		model.addAttribute("employeelist", employeeList);
+		model.addAttribute("departmentList", departmentList);
 		return "employee/employee-list";
 	}
 
