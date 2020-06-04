@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import example.training.model.employee.Employee;
+import example.training.model.employee.EmployeeList;
 import example.training.service.employee.EmployeeService;
 
 @Controller
@@ -18,7 +19,9 @@ public class EmployeeController {
 	private EmployeeService employeeSevice;
 
 	@GetMapping
-	public String employees() {
+	public String employees(Model model) {
+		EmployeeList employeeList = employeeSevice.listOf();
+		model.addAttribute("employeelist", employeeList);
 		return "employee/employee-list";
 	}
 

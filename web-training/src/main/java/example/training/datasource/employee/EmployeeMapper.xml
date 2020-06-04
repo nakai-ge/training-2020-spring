@@ -33,4 +33,21 @@
 			employee.id = #{employeeId}
 	</select>
 
+	<select id="listOf" resultMap="Employee">
+		SELECT
+			employee.id as employee_id,
+			employee.first_name,
+			employee.last_name,
+			employee.date_of_birth,
+			employee.gender_type,
+			department.id as department_id,
+			department.name as departmnet_name
+		FROM
+			employee.employee
+		INNER JOIN
+			employee.department
+		ON
+			employee.department_id = department.id
+	</select>
+
 </mapper>

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import example.training.model.employee.Employee;
+import example.training.model.employee.EmployeeList;
 import example.training.model.employee.EmployeeRepository;
 import example.training.model.fandamental.exception.ResourceNotFoundException;
 
@@ -19,6 +20,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 		if( employee == null )
 			throw new ResourceNotFoundException();
 		return employee;
+	}
+
+	@Override
+	public EmployeeList listOf() {
+		return employeeRepository.listOf();
 	}
 
 }
