@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import example.training.model.employee.Employee;
 import example.training.model.employee.EmployeeList;
 import example.training.model.employee.EmployeeRepository;
+import example.training.model.employee.criteria.EmployeeListCriteria;
 
 @Repository
 public class EmployeeDataSource implements EmployeeRepository {
@@ -25,4 +26,12 @@ public class EmployeeDataSource implements EmployeeRepository {
 		List<Employee> list = mapper.listOf();
 		return new EmployeeList(list);
 	}
+
+	@Override
+	public EmployeeList listOf(EmployeeListCriteria criteria) {
+		List<Employee> list = mapper.listOfCriteria(criteria);
+		return new EmployeeList(list);
+	}
+
+
 }

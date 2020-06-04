@@ -8,6 +8,12 @@
 <body>
 
 	<h1>社員一覧</h1>
+	<div>
+		<form th:action="@{/employee/search}" th:object="${criteria}" method="POST">
+			<p>部署名：<input th:field="*{departmentName}" id="departmentName" type="text" name="departmentName"></p>
+			<input type="submit" value="検索">
+		</form>
+	</div>
 
 	<table>
 		<thead>
