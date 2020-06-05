@@ -1,27 +1,20 @@
 package example.training.model.employee.criteria;
 
+import example.training.model.department.DepartmentId;
+
 public class EmployeeListCriteria {
 
-	private Integer selectedDepartmentId;
+	private DepartmentId selectedDepartmentId;
 
 	public EmployeeListCriteria() {
+		this.selectedDepartmentId = new DepartmentId();
 	}
 
-	public boolean isEmpty() {
-		if(selectedDepartmentId == null)
-			return true;
-		return false;
-	}
-
-	public boolean isNotEmpty() {
-		return !isEmpty();
-	}
-
-	public Integer getSelectedDepartmentId() {
+	public DepartmentId getSelectedDepartmentId() {
 		return selectedDepartmentId;
 	}
 
-	public void setSelectedDepartmentId(Integer selectedDepartmentId) {
+	public void setSelectedDepartmentId(DepartmentId selectedDepartmentId) {
 		this.selectedDepartmentId = selectedDepartmentId;
 	}
 

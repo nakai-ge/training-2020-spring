@@ -12,6 +12,16 @@ public class DepartmentId {
 	public DepartmentId() {
 	}
 
+	public boolean isEmpty() {
+		if(value == null)
+			return true;
+		return false;
+	}
+
+	public boolean isNotEmpty() {
+		return !isEmpty();
+	}
+
 	public Integer getValue() {
 		return value;
 	}
