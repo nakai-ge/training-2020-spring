@@ -18,7 +18,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public Employee findById(Integer employeeId) {
 		Employee employee = employeeRepository.findById(employeeId);
-		if( employee == null )
+		if(employee == null)
 			throw new ResourceNotFoundException();
 		return employee;
 	}
@@ -28,9 +28,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeRepository.listOf();
 	}
 
-	@Override
 	public EmployeeList listOf(EmployeeListCriteria criteria) {
 		return employeeRepository.listOf(criteria);
 	}
-
 }

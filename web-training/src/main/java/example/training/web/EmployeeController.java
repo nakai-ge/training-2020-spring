@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import example.training.model.department.DepartmentList;
 import example.training.model.employee.Employee;
 import example.training.model.employee.EmployeeList;
 import example.training.model.employee.criteria.EmployeeListCriteria;
 import example.training.model.employee.criteria.EmployeeListCriteriaFactory;
+import example.training.service.department.DepartmentService;
 import example.training.service.employee.EmployeeService;
 
 @Controller
@@ -22,25 +24,30 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeSevice;
 	@Autowired
-	private EmployeeListCriteriaFactory criteriaFactory;
+
+	private DepartmentService departmentService;
+	@Autowired
+	private EmployeeListCriteriaFactory employeeListCriteriaFactory;
 
 	@GetMapping
 	public String employees(Model model) {
-		EmployeeListCriteria criteria = criteriaFactory.create();
+		EmployeeListCriteria criteria = employeeListCriteriaFactory.create();
 		EmployeeList employeeList = employeeSevice.listOf();
-		model.addAttribute("employeelist", employeeList);
+		DepartmentList departmentList = departmentService.listOf();
 		model.addAttribute("criteria", criteria);
+		model.addAttribute("employeelist", employeeList);
+		model.addAttribute("departmentList", departmentList);
 		return "employee/employee-list";
 	}
 
 	@PostMapping("search")
-	public String searchEmployees(
-			@ModelAttribute EmployeeListCriteria criteria,
-			Model model
-			) {
+	public String employeesSearch(@ModelAttribute EmployeeListCriteria criteria,
+			Model model) {
 		EmployeeList employeeList = employeeSevice.listOf(criteria);
-		model.addAttribute("employeelist", employeeList);
+		DepartmentList departmentList = departmentService.listOf();
 		model.addAttribute("criteria", criteria);
+		model.addAttribute("employeelist", employeeList);
+		model.addAttribute("departmentList", departmentList);
 		return "employee/employee-list";
 	}
 
@@ -51,6 +58,5 @@ public class EmployeeController {
 		Employee employee = employeeSevice.findById(employeeId);
 		model.addAttribute("employee", employee);
 		return "employee/employee";
-
 	}
 }

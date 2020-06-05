@@ -66,8 +66,8 @@
 		ON
 			employee.department_id = department.id
 		<where>
-			<if test="criteria.notEmpty">
-				department.name LIKE '%'||#{criteria.departmentName}||'%'
+			<if test="criteria.selectedDepartmentId.notEmpty">
+				department.id = #{criteria.selectedDepartmentId.value}
 			</if>
 		</where>
 	</select>

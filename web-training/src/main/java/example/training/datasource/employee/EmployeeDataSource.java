@@ -17,7 +17,7 @@ public class EmployeeDataSource implements EmployeeRepository {
 	private EmployeeMapper mapper;
 
 	@Override
-	public Employee findById(Integer employeeId) {
+	public Employee findById( Integer employeeId ){
 		return mapper.findById(employeeId);
 	}
 
@@ -32,6 +32,4 @@ public class EmployeeDataSource implements EmployeeRepository {
 		List<Employee> list = mapper.listOfCriteria(criteria);
 		return new EmployeeList(list);
 	}
-
-
 }
