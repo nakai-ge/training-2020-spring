@@ -10,7 +10,13 @@
 	<h1>社員一覧</h1>
 	<div>
 		<form th:action="@{/employee/search}" th:object="${criteria}" method="POST">
-			<p>部署名：<input th:field="*{departmentName}" type="text" name="departmentName"></p>
+
+			<label class="control-label" for="exampleSelect">部署</label>
+			<select class="form-control" th:field="*{selectedDepartmentId.value}">
+				<option value="">---</option>
+				<option th:each="department : ${departmentList.values}" th:value="${department.id.value}" th:text="${department.name.value}" th:selected="${department.id.value} == *{selectedDepartmentId.value}">pulldown</option>
+			</select>
+
 			<input type="submit" value="検索">
 		</form>
 	</div>
@@ -26,7 +32,7 @@
 		<tbody>
 			<tr th:each="employee : ${employeelist.values}">
 				<td th:text="${employee.id.value}">100</td>
-				<td ><a th:href="@{'/employee/' + ${employee.id.value}}" th:text="${employee.name.fullName()}">社員 太郎</a></td>
+				<td ><a th:href="@{/employee/{employeeId}(employeeId=${employee.id.value})}" th:text="${employee.name.fullName()}">社員 太郎</a></td>
 				<td th:text="${employee.gender.label}">男性</td>
 				<td th:text="${employee.department.name.value}">総務部</td>
 			</tr>
