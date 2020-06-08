@@ -70,6 +70,10 @@
 				department.id = #{criteria.selectedDepartmentId.value}
 			</if>
 		</where>
+		ORDER BY employee.id
+		<if test="criteria.employeeIdPriority.desc">
+			DESC
+		</if>
 	</select>
 
 </mapper>
