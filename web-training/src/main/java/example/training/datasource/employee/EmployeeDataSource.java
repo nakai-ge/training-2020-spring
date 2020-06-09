@@ -22,12 +22,6 @@ public class EmployeeDataSource implements EmployeeRepository {
 	}
 
 	@Override
-	public EmployeeList listOf() {
-		List<Employee> list = mapper.listOf();
-		return new EmployeeList(list);
-	}
-
-	@Override
 	public EmployeeList listOf(EmployeeListCriteria criteria) {
 		List<Employee> list = mapper.listOfCriteria(criteria);
 		return new EmployeeList(list);

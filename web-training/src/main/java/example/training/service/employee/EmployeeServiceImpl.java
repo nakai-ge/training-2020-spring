@@ -23,11 +23,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employee;
 	}
 
-	@Override
-	public EmployeeList listOf() {
-		return employeeRepository.listOf();
-	}
-
 	public EmployeeList listOf(EmployeeListCriteria criteria) {
 		return employeeRepository.listOf(criteria);
 	}

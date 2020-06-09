@@ -32,22 +32,14 @@ public class EmployeeController {
 	@GetMapping
 	public String employees(Model model) {
 		EmployeeListCriteria criteria = employeeListCriteriaFactory.create();
-		EmployeeList employeeList = employeeSevice.listOf();
-		DepartmentList departmentList = departmentService.listOf();
-		model.addAttribute("criteria", criteria);
-		model.addAttribute("employeelist", employeeList);
-		model.addAttribute("departmentList", departmentList);
+		prepareEmployees(criteria, model);
 		return "employee/employee-list";
 	}
 
-	@PostMapping("search")
+	@PostMapping
 	public String employeesSearch(@ModelAttribute EmployeeListCriteria criteria,
 			Model model) {
-		EmployeeList employeeList = employeeSevice.listOf(criteria);
-		DepartmentList departmentList = departmentService.listOf();
-		model.addAttribute("criteria", criteria);
-		model.addAttribute("employeelist", employeeList);
-		model.addAttribute("departmentList", departmentList);
+		prepareEmployees(criteria, model);
 		return "employee/employee-list";
 	}
 
@@ -58,5 +50,13 @@ public class EmployeeController {
 		Employee employee = employeeSevice.findById(employeeId);
 		model.addAttribute("employee", employee);
 		return "employee/employee";
+	}
+
+	private void prepareEmployees(EmployeeListCriteria criteria, Model model) {
+		EmployeeList employeeList = employeeSevice.listOf(criteria);
+		DepartmentList departmentList = departmentService.listOf();
+		model.addAttribute("criteria", criteria);
+		model.addAttribute("employeelist", employeeList);
+		model.addAttribute("departmentList", departmentList);
 	}
 }
