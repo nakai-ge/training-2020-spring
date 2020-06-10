@@ -24,7 +24,6 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeSevice;
 	@Autowired
-
 	private DepartmentService departmentService;
 	@Autowired
 	private EmployeeListCriteriaFactory employeeListCriteriaFactory;
