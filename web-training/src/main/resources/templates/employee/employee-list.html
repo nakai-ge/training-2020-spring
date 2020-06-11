@@ -9,16 +9,21 @@
 
 	<h1>社員一覧</h1>
 	<div>
-		<form th:action="@{/employee/search}" th:object="${criteria}" method="POST">
-
-			<label class="control-label" for="exampleSelect">部署</label>
-			<select class="form-control" th:field="*{selectedDepartmentId.value}">
-				<option value="">---</option>
-				<option th:each="department : ${departmentList.values}" th:value="${department.id.value}" th:text="${department.name.value}" th:selected="${department.id.value} == *{selectedDepartmentId.value}">pulldown</option>
-			</select>
-
-			<input type="submit" value="検索">
+		<form th:action="@{/employee}" th:object="${criteria}" method="POST">
+			<p>
+				<label>部署</label>
+				<select th:field="*{selectedDepartmentId.value}">
+					<option value="">---</option>
+					<option th:each="department : ${departmentList.values}" th:value="${department.id.value}" th:text="${department.name.value}" th:selected="${department.id.value} == *{selectedDepartmentId.value}">pulldown</option>
+				</select>
+			</p>
+			<p>
+				<label>表示順：社員ＩＤ</label>
+				<input type="radio" th:each="option : *{employeeIdPriority.options()}" th:field=*{employeeIdPriority} th:value="${option.key}" th:text="${option.value}" th:selected="${option.key} == *{employeeIdPriority}" />
+			</p>
+			<p><input type="submit" value="検索"></p>
 		</form>
+
 	</div>
 	<table>
 		<thead>

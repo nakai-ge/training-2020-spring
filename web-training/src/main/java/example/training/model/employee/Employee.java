@@ -1,14 +1,22 @@
 package example.training.model.employee;
 
+import javax.validation.Valid;
+
 import example.training.model.fandamental.DateOfBirth;
 import example.training.model.fandamental.Gender;
 
 public class Employee {
-
 	private EmployeeId id;
+
+	@Valid
 	private EmployeeName name;
+
 	private Gender gender;
+
+	@Valid
 	private DateOfBirth dateOfBirth;
+
+	@Valid
 	private EmployeeDepartment department;
 
 	public Employee(EmployeeId id,

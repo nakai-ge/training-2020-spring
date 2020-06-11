@@ -1,8 +1,16 @@
 package example.training.model.employee;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class EmployeeName {
 
+	@NotBlank
+	@Size(max=100)
 	private String firstName;
+
+	@NotBlank
+	@Size(max=100)
 	private String lastName;
 
 	public EmployeeName(String firstName, String lastName) {

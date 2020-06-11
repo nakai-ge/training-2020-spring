@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import example.training.model.employee.Employee;
+import example.training.model.employee.EmployeeId;
 import example.training.model.employee.EmployeeList;
 import example.training.model.employee.EmployeeRepository;
 import example.training.model.employee.criteria.EmployeeListCriteria;
@@ -23,9 +24,13 @@ public class EmployeeDataSource implements EmployeeRepository {
 
 	@Override
 	public EmployeeList listOf(EmployeeListCriteria criteria) {
-		List<Employee> list = mapper.listOf(criteria);
-		if(list == null)
-			return new EmployeeList();
+		List<Employee> list = mapper.listOfCriteria(criteria);
 		return new EmployeeList(list);
+	}
+
+	@Override
+	public void register(Employee employee) {
+		EmployeeId employeeId = mapper.nextId();
+		mapper.register(employeeId,employee);
 	}
 }

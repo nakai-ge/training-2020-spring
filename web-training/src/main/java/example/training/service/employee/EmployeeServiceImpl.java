@@ -27,4 +27,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public EmployeeList listOf(EmployeeListCriteria criteria) {
 		return employeeRepository.listOf(criteria);
 	}
+
+	@Override
+	public void register(Employee employee) {
+		employeeRepository.register(employee);
+	}
 }
