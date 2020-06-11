@@ -15,6 +15,20 @@ public class DepartmentList {
 		this.values = new ArrayList<Department>();
 	}
 
+//	public DepartmentName departmentNameById(DepartmentId departmentId) {
+//		for(Department department: values)
+//			if(department.getId().getValue().equals(departmentId.getValue()))
+//				return department.getName();
+//		return new DepartmentName();
+//	}
+
+	public DepartmentName departmentNameById(Integer departmentId) {
+		for(Department department: values)
+			if(department.getId().getValue().equals(departmentId))
+				return department.getName();
+		return new DepartmentName();
+	}
+
 	public List<Department> getValues() {
 		return values;
 	}

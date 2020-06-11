@@ -3,6 +3,11 @@
 <mapper
 	namespace="example.training.datasource.employee.EmployeeMapper">
 
+	<resultMap id="EmployeeId"
+		type="example.training.model.employee.EmployeeId">
+		<id column="employee_id" property="value"/>
+	</resultMap>
+
 	<resultMap id="Employee"
 		type="example.training.model.employee.Employee">
 		<id column="employee_id" property="id.value" />
@@ -13,6 +18,10 @@
 		<result column="department_id" property="department.id.value" />
 		<result column="departmnet_name" property="department.name.value" />
 	</resultMap>
+
+	<select id="nextId" resultMap="EmployeeId">
+		select nextval('employee.employee_id_seq') employee_id
+	</select>
 
 	<select id="findById" resultMap="Employee">
 		SELECT
@@ -75,5 +84,24 @@
 			DESC
 		</if>
 	</select>
+
+	<insert id="register">
+		INSERT INTO employee.employee(
+			id,
+			first_name,
+			last_name,
+			gender_type,
+			date_of_birth,
+			department_id
+		)
+		VALUES(
+			#{employeeId.value},
+			#{employee.name.firstName},
+			#{employee.name.lastName},
+			#{employee.gender},
+			#{employee.dateOfBirth.value},
+			#{employee.department.id.value}
+		)
+	</insert>
 
 </mapper>

@@ -7,4 +7,5 @@ import example.training.model.employee.criteria.EmployeeListCriteria;
 public interface EmployeeService {
 	public Employee findById(Integer employeeId);
 	public EmployeeList listOf(EmployeeListCriteria criteria);
+	public void register(Employee employee);
 }

@@ -8,28 +8,43 @@
 <body>
 
 	<h1>社員登録</h1>
-	<div>
+
+	<form th:action="@{/employee/register/execute}" th:object="${employee}" method="POST">
 		<table>
 			<tbody>
 				<tr>
 					<th>氏名</th>
-					<td th:text="${employee.name.fullName()}">社員 太郎</td>
+					<td th:text="*{name.fullName()}">社員 太郎</td>
 				</tr>
 				<tr>
 					<th>性別</th>
-					<td th:text="${employee.gender.label}">男性</td>
+					<td th:text="*{gender.label}">男性</td>
 				</tr>
 				<tr>
 					<th>生年月日</th>
-					<td th:text="${employee.dateOfBirth.value}">1983/06/14</td>
+					<td th:text="*{dateOfBirth.value}">1983/06/14</td>
 				</tr>
 				<tr>
 					<th>所属部署</th>
-					<td th:text="${employee.department.id.value}">システム統括本部</td>
+					<td th:text="*{department.id.value}">システム統括本部</td>
 				</tr>
+				<!--
+				<tr>
+					<th>所属部署</th>
+					<td th:text="${departmentList.departmentNameById(__*{department.id.value}__).value}">システム統括本部</td>
+				</tr>
+				 -->
 			</tbody>
 		</table>
-	</div>
+		<div>
+			<input type="hidden" th:field="*{name.lastName}" />
+			<input type="hidden" th:field="*{name.firstName}" />
+			<input type="hidden" th:field="*{gender}" />
+			<input type="hidden" th:field="*{dateOfBirth.value}" />
+			<input type="hidden" th:field="*{department.id.value}" />
+		</div>
+		<p><input type="submit" value="登録"></p>
+	</form>
 
 </body>
 </html>

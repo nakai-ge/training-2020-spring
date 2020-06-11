@@ -1,10 +1,12 @@
 package example.training.model.employee;
 
+import javax.validation.Valid;
+
 import example.training.model.department.DepartmentId;
 import example.training.model.department.DepartmentName;
 
 public class EmployeeDepartment {
-
+	@Valid
 	private DepartmentId id;
 	private DepartmentName name;
 
