@@ -16,4 +16,5 @@ public interface EmployeeMapper {
 	List<Employee> listOfCriteria(@Param("criteria") EmployeeListCriteria criteria);
 	EmployeeId nextId();
 	void register(@Param("employeeId") EmployeeId employeeId , @Param("employee") Employee employee);
+	void modify(@Param("employee") Employee employee);
 }

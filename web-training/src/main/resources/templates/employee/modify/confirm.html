@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 
-<title>社員登録</title>
+<title>社員編集</title>
 </head>
 <body>
 
-	<h1>社員登録</h1>
+	<h1>社員編集</h1>
 
-	<form th:action="@{/employee/register/execute}" th:object="${employee}" method="POST">
+	<form th:action="@{/employee/modify/execute}" th:object="${employee}" method="POST">
 		<table>
 			<tbody>
 				<tr>
@@ -31,6 +31,7 @@
 			</tbody>
 		</table>
 		<div>
+			<input type="hidden" th:field="*{id.value}" />
 			<input type="hidden" th:field="*{name.lastName}" />
 			<input type="hidden" th:field="*{name.firstName}" />
 			<input type="hidden" th:field="*{gender}" />

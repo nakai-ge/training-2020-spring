@@ -31,5 +31,4 @@ public class WebConfig implements WebMvcConfigurer {
 		messageSource.setDefaultEncoding("UTF-8");
 		return messageSource;
 	}
-
 }

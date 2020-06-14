@@ -6,4 +6,5 @@ public interface EmployeeRepository {
 	public Employee findById(Integer employeeId);
 	public EmployeeList listOf(EmployeeListCriteria criteria);
 	public void register(Employee employee);
+	public void modify(Employee employee);
 }
