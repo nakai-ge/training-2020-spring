@@ -32,14 +32,16 @@
 				<th>氏名</th>
 				<th>性別</th>
 				<th>所属部署</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="employee : ${employeelist.values}">
 				<td th:text="${employee.id.value}">100</td>
-				<td ><a th:href="@{/employee/{employeeId}(employeeId=${employee.id.value})}" th:text="${employee.name.fullName()}">社員 太郎</a></td>
+				<td><a th:href="@{/employee/{employeeId}(employeeId=${employee.id.value})}" th:text="${employee.name.fullName()}">社員 太郎</a></td>
 				<td th:text="${employee.gender.label}">男性</td>
 				<td th:text="${employee.department.name.value}">総務部</td>
+				<td><a th:href="@{/employee/delete/{employeeId}(employeeId=${employee.id.value})}">削除</a></td>
 			</tr>
 		</tbody>
 	</table>

@@ -38,4 +38,9 @@ public class EmployeeDataSource implements EmployeeRepository {
 	public void modify(Employee employee) {
 		mapper.modify(employee);
 	}
+
+	@Override
+	public void delete(Integer employeeId) {
+		mapper.delete(employeeId);
+	}
 }
