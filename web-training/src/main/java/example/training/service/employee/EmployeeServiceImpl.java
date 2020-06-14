@@ -32,4 +32,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public void register(Employee employee) {
 		employeeRepository.register(employee);
 	}
+
+	@Override
+	public void modify(Employee employee) {
+		employeeRepository.modify(employee);
+	}
 }

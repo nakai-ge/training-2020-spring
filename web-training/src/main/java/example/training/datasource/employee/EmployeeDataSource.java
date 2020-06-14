@@ -33,4 +33,9 @@ public class EmployeeDataSource implements EmployeeRepository {
 		EmployeeId employeeId = mapper.nextId();
 		mapper.register(employeeId,employee);
 	}
+
+	@Override
+	public void modify(Employee employee) {
+		mapper.modify(employee);
+	}
 }
