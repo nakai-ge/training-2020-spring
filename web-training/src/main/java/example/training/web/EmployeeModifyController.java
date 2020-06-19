@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import example.training.model.department.DepartmentList;
 import example.training.model.employee.Employee;
@@ -17,7 +18,7 @@ import example.training.service.department.DepartmentService;
 import example.training.service.employee.EmployeeService;
 
 @Controller
-@RequestMapping("employee/modify")
+@RequestMapping("employee/modify/{employeeId:\\d+}")
 public class EmployeeModifyController {
 
 	@Autowired
@@ -25,23 +26,32 @@ public class EmployeeModifyController {
 	@Autowired
 	private EmployeeService employeeService;
 
-	@GetMapping("{employeeId:\\d+}")
-	public String form(@PathVariable Integer employeeId,
-			Model model) {
-		Employee employee = employeeService.findById(employeeId);
-		DepartmentList departmentList = departmentService.listOf();
-		model.addAttribute("employee", employee);
-		model.addAttribute("departmentList", departmentList);
+	@ModelAttribute
+	public Employee employee(@PathVariable Integer employeeId) {
+		return employeeService.findById(employeeId);
+	}
+
+	@ModelAttribute
+	public DepartmentList DepartmentList() {
+		return departmentService.listOf();
+	}
+
+	@GetMapping()
+	public String form() {
 		return "employee/modify/form";
+	}
+
+	@PostMapping("back")
+	public String backFrom(@ModelAttribute Employee employee,
+			RedirectAttributes redirectAttributes) {
+		redirectAttributes.addFlashAttribute("employee", employee);
+		return "redirect:/employee/modify/" + employee.getId().getValue();
 	}
 
 	@PostMapping
 	public String confirm(@Validated @ModelAttribute Employee employee,
 			BindingResult result,
 			Model model) {
-		DepartmentList departmentList = departmentService.listOf();
-		model.addAttribute("employee", employee);
-		model.addAttribute("departmentList", departmentList);
 		if(result.hasErrors())
 			return "employee/modify/form";
 		return "employee/modify/confirm";

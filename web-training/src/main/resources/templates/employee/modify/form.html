@@ -9,7 +9,7 @@
 
 	<h1>社員編集</h1>
 	<div>
-		<form th:action="@{/employee/modify}" th:object="${employee}" method="POST">
+		<form th:action="@{/employee/modify/{employeeId}(employeeId=${employee.id.value})}" th:object="${employee}" method="POST">
 			<p>
 				<span style="color:red">*</span>
 				<label>氏名:姓</label>
@@ -41,7 +41,10 @@
 			</p>
 			<p style="color:red" th:if="${#fields.hasErrors('department.id.value')}" th:errors="*{department.id.value}"></p>
 			<input type="hidden" th:field="*{id.value}" />
-			<p><input type="submit" value="確認"></p>
+			<p>
+				<input id="back_button" type="button" value="戻る"  th:onclick="|location.href='@{/employee/{employeeId}(employeeId=${employee.id.value})}'|"/>
+				<input type="submit" value="確認">
+			</p>
 		</form>
 	</div>
 

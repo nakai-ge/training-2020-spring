@@ -116,4 +116,9 @@
 			employee.id = #{employee.id.value}
 	</update>
 
+	<delete id="delete">
+		DELETE  FROM  employee.employee
+		WHERE
+			employee.id = #{employeeId}
+	</delete>
 </mapper>

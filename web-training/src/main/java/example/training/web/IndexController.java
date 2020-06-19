@@ -36,5 +36,4 @@ public class IndexController {
 		model.addAttribute("lastName", lastName);
 		return "greeting";
 	}
-
 }
