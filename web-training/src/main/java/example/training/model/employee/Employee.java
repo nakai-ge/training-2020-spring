@@ -1,11 +1,16 @@
 package example.training.model.employee;
 
+import java.io.Serializable;
+
 import javax.validation.Valid;
 
 import example.training.model.fandamental.DateOfBirth;
 import example.training.model.fandamental.Gender;
 
-public class Employee {
+public class Employee implements Serializable {
+
+	private static final long serialVersionUID = 4452675527231791966L;
+
 	private EmployeeId id;
 
 	@Valid

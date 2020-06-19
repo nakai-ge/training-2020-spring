@@ -42,7 +42,10 @@
 			</p>
 
 			<p style="color:red" th:if="${#fields.hasErrors('department.id.value')}" th:errors="*{department.id.value}"></p>
-			<p><input type="submit" value="確認"></p>
+			<p>
+				<input type="button" th:onclick="|location.href='@{/employee}'|" value="戻る" />
+				<input type="submit" value="確認">
+			</p>
 		</form>
 	</div>
 

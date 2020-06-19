@@ -3,7 +3,7 @@ package example.training.model.fandamental;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public enum Gender {
+public enum Gender{
 	MALE("男性"),
 	FEMALE("女性");
 
